@@ -1857,17 +1857,15 @@
         <div class="chip-tag blue">DEMO</div>
       </div>
       <div class="video-frame" id="videoFrame">
-        <video id="demoVideo" controls preload="metadata" src="output_demo.mp4" onerror="showVideoPlaceholder()"></video>
+        <video id="demoVideo" controls preload="metadata" playsinline controlsList="nodownload noplaybackrate" disablePictureInPicture src="output_demo.mp4" onerror="showVideoPlaceholder()"></video>
         <div class="video-empty" id="videoPlaceholder" style="display:none;">
           <div class="icon">🎬</div>
-          <b>Place your output video here</b>
-          <div>Rename your video to <span style="color:var(--teal);font-family:var(--font-mono)">output_demo.mp4</span> and keep it in the same folder, or choose a video file below.</div>
+          <b>Demo video is missing</b>
+          <div>The website is locked to play only <span style="color:var(--teal);font-family:var(--font-mono)">output_demo.mp4</span>. Keep this video file in the same folder as <span style="color:var(--teal);font-family:var(--font-mono)">index.html</span>.</div>
         </div>
       </div>
       <div class="video-actions">
-        <label class="btn" for="videoUpload">＋ Choose Video File</label>
-        <input id="videoUpload" type="file" accept="video/*" />
-        <span class="small-note">The selected file plays locally in the browser; no upload is needed.</span>
+        <span class="small-note">Fixed website demo video: <span style="color:var(--teal);font-family:var(--font-mono)">output_demo.mp4</span></span>
       </div>
     </section>
   </main>
@@ -2685,17 +2683,6 @@ function showVideoPlaceholder() {
   }
 }
 
-document.getElementById('videoUpload').addEventListener('change', (e) => {
-  const file = e.target.files && e.target.files[0];
-  if (!file) return;
-  const video = document.getElementById('demoVideo');
-  const placeholder = document.getElementById('videoPlaceholder');
-  video.src = URL.createObjectURL(file);
-  video.style.display = 'block';
-  placeholder.style.display = 'none';
-  video.load();
-  video.play().catch(() => {});
-});
 
 window.addEventListener('resize', () => drawTrain(1));
 window.addEventListener('load', () => {
